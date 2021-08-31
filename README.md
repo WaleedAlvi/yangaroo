@@ -1,4 +1,4 @@
-# yangaroo
+# Yangaroo
 
 Yangaroo Todo App
 
