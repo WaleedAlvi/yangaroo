@@ -15,6 +15,7 @@ export const TodoDashboard = () => {
     if (isSent) {
       agent.LstOfTodos().then((response) => {
         setTodos(response);
+        setSessionStorage(response);
         setIsSent(false);
       });
     }
@@ -29,6 +30,14 @@ export const TodoDashboard = () => {
     agent.AddTodoItem(newTodo).then(() => {
       setNewTodo('');
       setIsSent(true);
+    });
+  };
+
+  const setSessionStorage = (todos: ITodo[]) => {
+    todos.map((todo: ITodo) => {
+      if (window.sessionStorage.getItem(todo.todoID) === null) {
+        window.sessionStorage.setItem(todo.todoID, todo.todoName);
+      }
     });
   };
 
